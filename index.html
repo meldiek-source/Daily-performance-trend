@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EGY Last Mile — Daily Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0D1B3E;color:#374151;font-size:12px}
+.shell{display:flex;flex-direction:column;position:fixed;inset:0}
+.nt{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:9px 24px;background:#0a1628;border-bottom:1px solid #1E3A5F}
+.ntl{color:#7B93A8;font-size:11px;font-weight:600}.nts{color:#4A6280;font-size:9px;margin-top:1px}
+.nc{color:#4A6280;font-size:11px;white-space:nowrap}
+.ndd{display:flex;gap:5px}.nd{width:9px;height:9px;border-radius:50%;background:#1E3A5F;cursor:pointer;transition:background .2s}.na{background:#0E7C7B}
+.vp{flex:1;position:relative;overflow:hidden}
+.sl{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .22s;display:flex;flex-direction:column}
+.sa{opacity:1;pointer-events:all}
+.si{flex:1;overflow:hidden;background:#F0F2F5;display:flex;flex-direction:column}
+.sh{flex-shrink:0;padding:12px 24px 0}.st{font-size:18px;font-weight:700;color:#0D1B3E}.ss{font-size:10px;color:#6B7280;margin-top:2px;margin-bottom:8px}
+.sb{flex:1;overflow:hidden;padding:0 24px 10px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.nb2{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:9px 24px;background:#0a1628;border-top:1px solid #1E3A5F}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 18px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bp{background:#1E3A5F;color:#7B93A8}.bp:hover{background:#243f6a;color:#fff}.bp:disabled{opacity:.3;cursor:default}
+.bn{background:#0E7C7B;color:#fff}.bn:hover{background:#0a6560}.bn:disabled{opacity:.3;cursor:default}
+.bh{background:transparent;color:#4A6280;font-size:10px;border:none;cursor:default}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cb{background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #E5E7EB}
+.cb.fd{display:flex;flex-direction:column}.ct{font-size:11px;font-weight:700;color:#0D1B3E;margin-bottom:4px}.cs{font-size:9.5px;color:#6B7280;margin-bottom:8px}
+.cw{position:relative;flex:1;min-height:0}
+.kc{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB}
+.kl{font-size:8px;text-transform:uppercase;letter-spacing:.07em;color:#6B7280;margin-bottom:3px;font-weight:600}
+.kv{font-size:16px;font-weight:700;color:#0D1B3E;margin-bottom:1px}.ks{font-size:9px;color:#6B7280}
+.tw{overflow:auto;border-radius:8px;border:1px solid #E5E7EB;background:#fff}
+.dt{width:100%;border-collapse:collapse;font-size:10px}
+.dt th{background:#0D1B3E;color:#fff;padding:7px 8px;text-align:center;font-size:9px;font-weight:600;white-space:nowrap;position:sticky;top:0;z-index:5}
+.dt th.tl{text-align:left;padding-left:12px}
+.dt td{padding:6px 8px;text-align:center;border-bottom:1px solid #F3F4F6;white-space:nowrap;font-variant-numeric:tabular-nums}
+.dt td.tl{text-align:left;padding-left:12px;font-weight:600}.dt tr:hover td{background:#F8FAFC}
+.cg{color:#1D9E75;font-weight:600}.cr{color:#DC2626;font-weight:600}.ca{color:#D97706;font-weight:600}.cn{color:#6B7280}.cm{color:#374151}
+.sp{padding:4px 9px;border-radius:99px;border:1.5px solid #E5E7EB;font-size:9px;font-weight:600;cursor:pointer;transition:all .15s;background:#fff;color:#374151;white-space:nowrap}
+.sp:hover{border-color:#0E7C7B;color:#0E7C7B}.sp.active{background:#0E7C7B;border-color:#0E7C7B;color:#fff}
+.dt th.sortable{cursor:pointer;user-select:none;position:sticky;top:0}
+.dt th.sortable:hover{background:#152a52}
+.dt th.sortable .arrow{font-size:8px;opacity:.6;margin-left:3px}
+.dt th.sortable.sorted .arrow{opacity:1}
+.stale-banner{display:none;background:#7c2d12;color:#fed7aa;font-size:10px;padding:6px 24px;text-align:center;font-weight:600}
+</style></head>
+<body><div class="shell">
+<div class="stale-banner" id="staleBanner">⚠ This data is more than 36 hours old — the daily refresh may have failed. Check the Apps Script trigger.</div>
+<div class="nt">
+  <div><div class="ntl" id="ntl">__TITLE__ Performance Brief</div><div class="nts">Egypt Noon Minutes · __REPORT_DATE_LONG__ · 19 Stores (incl. New Giza) · vs __PREV_WINDOW_LABEL__ trend</div></div>
+  <div class="ndd"><div class="nd na" onclick="goTo(0)"></div><div class="nd" onclick="goTo(1)"></div><div class="nd" onclick="goTo(2)"></div><div class="nd" onclick="goTo(3)"></div><div class="nd" onclick="goTo(4)"></div><div class="nd" onclick="goTo(5)"></div><div class="nd" onclick="goTo(6)"></div><div class="nd" onclick="goTo(7)"></div></div>
+  <div class="nc" id="nc">1 / 8</div>
+</div>
+<div class="vp"><div class="sl sa" id="sl0"><div class="si"><div class="sh"><div class="st">__TITLE__ Performance Brief</div><div class="ss">Egypt Noon Minutes · __REPORT_DATE_LONG__ · All 19 stores incl. New Giza · vs __PREV_WINDOW_LABEL__ avg · 🔴 🟡 🟢</div></div><div class="sb"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex-shrink:0">
+  <div class="kc"><div class="kl">NETWORK ORDERS</div><div class="kv " id="kOrders"></div><div class="ks" id="kOrdersPrev"></div></div>
+  <div class="kc"><div class="kl">AVG E2E</div><div class="kv" id="kE2E"></div><div class="ks" id="kE2EPrev"></div></div>
+  <div class="kc"><div class="kl">SLA BREACH</div><div class="kv" id="kBreach"></div><div class="ks" id="kBreachPrev"></div></div>
+  <div class="kc"><div class="kl">AVG P95</div><div class="kv" id="kP95"></div><div class="ks" id="kP95Prev"></div></div>
+  <div class="kc"><div class="kl">AVG WAIT RIDER</div><div class="kv" id="kWait"></div><div class="ks" id="kWaitPrev"></div></div>
+  <div class="kc"><div class="kl">TOTAL MDE</div><div class="kv" id="kMDE"></div><div class="ks" id="kMDELabel"></div></div>
+  <div class="kc"><div class="kl">COMPL / 1K</div><div class="kv" id="kCPK"></div><div class="ks">Weighted avg</div></div>
+  <div class="kc"><div class="kl">CRITICAL STORES</div><div class="kv cr" id="kCritCount"></div><div class="ks" id="kCritList"></div></div>
+  <div class="kc"><div class="kl">BENCHMARK</div><div class="kv cg" id="kBenchName"></div><div class="ks" id="kBenchStats"></div></div>
+  <div class="kc"><div class="kl">BEST RECOVERY</div><div class="kv cg" id="kBestName"></div><div class="ks" id="kBestStats"></div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;min-height:0;margin-top:8px">
+  <div style="display:flex;flex-direction:column;gap:6px;min-height:0">
+    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">⏱ E2E Ranking — __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
+    <div class="tw" style="flex:1;min-height:0"><table class="dt" id="e2eRankTable">
+      <thead><tr>
+        <th class="tl sortable" data-key="store" data-table="e2e">Store</th>
+        <th class="sortable" data-key="cur" data-table="e2e">__REPORT_DATE_SHORT__</th>
+        <th class="sortable" data-key="prev" data-table="e2e">Prev Avg</th>
+        <th class="sortable" data-key="delta" data-table="e2e">Δ</th>
+      </tr></thead>
+      <tbody id="e2eRankBody"></tbody>
+    </table></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;min-height:0">
+    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">📈 P95 Ranking — __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
+    <div class="tw" style="flex:1;min-height:0"><table class="dt" id="p95RankTable">
+      <thead><tr>
+        <th class="tl sortable" data-key="store" data-table="p95">Store</th>
+        <th class="sortable" data-key="cur" data-table="p95">__REPORT_DATE_SHORT__</th>
+        <th class="sortable" data-key="prev" data-table="p95">Prev Avg</th>
+        <th class="sortable" data-key="delta" data-table="p95">Δ</th>
+      </tr></thead>
+      <tbody id="p95RankBody"></tbody>
+    </table></div>
+  </div>
+</div></div></div></div>
+
+<div class="sl " id="sl1"><div class="si"><div class="sh"><div class="st">__TITLE__ — Full Store Scorecard vs Trend</div><div class="ss">All 19 stores sorted by E2E · __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg · Δ = change from prior 3-day average</div></div><div class="sb"><div class="tw" style="flex:1;min-height:0">
+<table class="dt"><thead><tr>
+  <th class="tl">Store</th><th>Orders</th><th>E2E</th><th>Δ E2E</th><th>Fulfil</th>
+  <th>Wait Rider</th><th>Δ Wait</th><th>On Road</th><th>Handoff</th>
+  <th>Breach%</th><th>Δ Breach</th><th>P95</th><th>MDE</th><th>C/1K</th>
+</tr></thead>
+<tbody id="scorecardBody"></tbody></table></div></div></div></div>
+
+<div class="sl " id="sl2"><div class="si"><div class="sh"><div class="st">E2E & SLA Breach — 7-Day Trend per Store</div><div class="ss" id="sl2sub">__WINDOW_LABEL__</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
+  <div class="cb fd"><div class="ct">Avg E2E — __WINDOW_LABEL__</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1a"></canvas></div></div>
+  <div class="cb fd"><div class="ct">SLA Breach % — __WINDOW_LABEL__</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1b"></canvas></div></div>
+</div></div></div></div>
+
+<div class="sl " id="sl3"><div class="si"><div class="sh"><div class="st">Last Mile Decomposition — __REPORT_DATE_SHORT__</div><div class="ss">Fulfil + Wait Rider + On-Road + Handoff · Where time is lost today</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
+  <div class="cb fd"><div class="ct">E2E Breakdown — __REPORT_DATE_SHORT__</div><div class="cs">Stacked: Fulfil · Wait Rider (red) · On-Road · Handoff</div><div class="cw"><canvas id="c3a"></canvas></div></div>
+  <div class="cb fd"><div class="ct">Wait-for-Rider Trend — __WINDOW_LABEL__ (top 5 volatility stores)</div><div class="cs">Stores with the widest wait-time swing this week</div><div class="cw"><canvas id="c3b"></canvas></div></div>
+</div></div></div></div>
+
+<div class="sl " id="sl4"><div class="si"><div class="sh"><div class="st">Store Drilldown — __WINDOW_LABEL__</div><div class="ss">Click a store · E2E · P95 · Breach dual-axis + time decomposition</div></div><div class="sb"><div id="storePicker" style="display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0;margin-bottom:8px"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+  <div class="cb fd"><div class="ct" id="ddt1">E2E · P95 · Breach</div><div class="cw"><canvas id="dd1"></canvas></div></div>
+  <div class="cb fd"><div class="ct" id="ddt2">Time Decomposition</div><div class="cw"><canvas id="dd2"></canvas></div></div>
+</div></div></div></div>
+
+<div class="sl " id="sl5"><div class="si">
+<div class="sh"><div class="st">Network Time Profile — __REPORT_DATE_SHORT__</div><div class="ss">All delivered orders · On-time delivery % · E2E composition · On-Road · Handoff · Pick-up wait · weighted by order volume</div></div>
+<div class="sb">
+  <div class="g2" style="flex:1;min-height:0;gap:10px">
+    <div class="cb fd"><div class="ct">% On-Time Delivery by Store</div><div class="cs">On-time = E2E ≤15 min · sorted best→worst · target 80%+</div><div class="cw"><canvas id="c5a"></canvas></div></div>
+    <div class="cb fd"><div class="ct">E2E Time Composition — % of Total E2E</div><div class="cs">Pick-up wait · On-Road · Handoff · Fulfil as % of each store's avg E2E</div><div class="cw"><canvas id="c5b"></canvas></div></div>
+  </div>
+  <div class="g2" style="flex:1;min-height:0;gap:10px">
+    <div class="cb fd"><div class="ct">On-Road Time % of Last Mile</div><div class="cs">On-Road ÷ (Wait + On-Road + Handoff) × 100 · high % = zone stretch</div><div class="cw"><canvas id="c5c"></canvas></div></div>
+    <div class="cb fd"><div class="ct">Handoff &amp; Pick-Up Wait by Store (min)</div><div class="cs">Handoff = rider arrival → delivery complete · Pick-up = packed order waiting for rider</div><div class="cw"><canvas id="c5d"></canvas></div></div>
+  </div>
+</div>
+</div></div>
+<div class="sl " id="sl6"><div class="si">
+<div class="sh"><div class="st">Network KPI Trends — __WINDOW_LABEL__</div><div class="ss">7-day daily trends per store or network · On-time % · On-road % of last mile · Avg handoff · Avg pick-up wait</div></div>
+<div class="sb">
+  <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;margin-bottom:2px">
+    <div style="font-size:11px;font-weight:600;color:#0D1B3E">Filter store:</div>
+    <select id="kpiSel" style="padding:5px 12px;border:1.5px solid #E5E7EB;border-radius:6px;font-size:11px;font-weight:600;color:#0D1B3E;background:#fff;cursor:pointer"></select>
+    <div id="kpiBadge" style="font-size:10px;color:#6B7280;margin-left:4px"></div>
+  </div>
+  <div class="g2" style="flex:1;min-height:0;gap:10px">
+    <div class="cb fd"><div class="ct">On-Time Delivery %</div><div class="cs">On-time = E2E ≤15 min · Target 80%+ (green dashed)</div><div class="cw"><div id="pw_c6a" style="position:relative;width:100%;height:100%"><canvas id="c6a"></canvas></div></div></div>
+    <div class="cb fd"><div class="ct">On-Road % of Last Mile</div><div class="cs">On-road ÷ (wait + on-road + handoff) · high = zone stretch</div><div class="cw"><div id="pw_c6b" style="position:relative;width:100%;height:100%"><canvas id="c6b"></canvas></div></div></div>
+  </div>
+  <div class="g2" style="flex:1;min-height:0;gap:10px">
+    <div class="cb fd"><div class="ct">Avg Handoff Time (min)</div><div class="cs">Rider arrival → delivery complete · building access friction</div><div class="cw"><div id="pw_c6c" style="position:relative;width:100%;height:100%"><canvas id="c6c"></canvas></div></div></div>
+    <div class="cb fd"><div class="ct">Avg Pick-Up Wait (min)</div><div class="cs">Packed order waiting for rider at store counter</div><div class="cw"><div id="pw_c6d" style="position:relative;width:100%;height:100%"><canvas id="c6d"></canvas></div></div></div>
+  </div>
+</div>
+</div></div>
+<div class="sl " id="sl7"><div class="si">
+<div class="sh"><div class="st">Batching Trends — __WINDOW_LABEL__</div><div class="ss">batch_flag='batched' rate % · Batched order count · Source: noonbinimlog.core.geomap · filter by store or view network</div></div>
+<div class="sb">
+  <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;margin-bottom:4px">
+    <div style="font-size:11px;font-weight:600;color:#0D1B3E">Filter store:</div>
+    <select id="batchSel" style="padding:5px 12px;border:1.5px solid #E5E7EB;border-radius:6px;font-size:11px;font-weight:600;color:#0D1B3E;background:#fff;cursor:pointer"></select>
+    <div id="batchBadge" style="font-size:10px;color:#6B7280"></div>
+  </div>
+  <div class="cb fd" style="flex:1;min-height:0"><div class="ct">Batch Rate % — batch_flag='batched' orders / total orders</div><div class="cs">Source: noonbinimlog.core.geomap</div><div class="cw" id="pb_br"><canvas id="bc_br"></canvas></div></div>
+  <div class="cb fd" style="flex:1;min-height:0"><div class="ct">Batched Order Count — Absolute number of batched orders per day</div><div class="cs">Raw count of orders with batch_flag='batched'</div><div class="cw" id="pb_ppt"><canvas id="bc_ppt"></canvas></div></div>
+</div>
+</div></div>
+</div>
+<div class="nb2">
+  <button class="btn bp" id="bp" onclick="goTo(cur-1)" disabled>← Previous</button>
+  <span class="bh" id="genStamp">Arrow keys · click dots</span>
+  <button class="btn bn" id="bn" onclick="goTo(cur+1)">Next →</button>
+</div></div>
+<script>
+Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
+let cur=0;const TOT=8;const LBL=['__TITLE__ Performance Brief','__TITLE__ — Full Store Scorecard vs Trend','E2E & SLA Breach — 7-Day Trend per Store','Last Mile Decomposition — __REPORT_DATE_SHORT__','Store Drilldown — __WINDOW_LABEL__','Network Time Profile — __REPORT_DATE_SHORT__','Network KPI Trends — __WINDOW_LABEL__','Batching Trends — __WINDOW_LABEL__'];
+const _done={},_fns={};
+function _reg(i,fn){_fns[i]=fn;}
+function goTo(i){
+  if(i<0||i>=TOT)return;
+  document.querySelectorAll('.sl').forEach((s,j)=>s.classList.toggle('sa',j===i));
+  document.querySelectorAll('.nd').forEach((d,j)=>d.classList.toggle('na',j===i));
+  document.getElementById('ntl').textContent=LBL[i];
+  document.getElementById('nc').textContent=(i+1)+' / '+TOT;
+  document.getElementById('bp').disabled=i===0;
+  document.getElementById('bn').disabled=i===TOT-1;
+  cur=i;
+  if(!_done[i]&&_fns[i])requestAnimationFrame(()=>requestAnimationFrame(()=>{if(!_done[i]){_done[i]=1;_fns[i]();}}));
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')goTo(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')goTo(cur-1);
+});
+
+// ============================================================
+// INJECTED DATA — replaced wholesale by Apps Script on every run
+// ============================================================
+const GENERATED_AT_ISO = "__GENERATED_AT_ISO__";
+const SN = __SN__;
+const SC = __SC__;
+const DT = __DT__;
+const E2E = __E2E__;
+const BR = __BR__;
+const P95S = __P95S__;
+const W = __WAIT__;
+const FS = __FULFIL__;
+const ORS = __ONROAD__;
+const HFS = __HANDOFF__;
+const SOT = __ONTIME__;
+const SOR = __ONROAD_PCT_LM__;
+const SO = __TOTAL_ORDERS_7D__;
+const F1 = __FULFIL_TODAY__, W1 = __WAIT_TODAY__, O1 = __ONROAD_TODAY__, H1 = __HANDOFF_TODAY__;
+const HW = __TOP5_WAIT_VOL_IDX__;
+const HC = __TOP5_WAIT_VOL_COLOR__;
+const _NN = __NET_ONTIME__, _NO = __NET_ONROAD_PCT__, _NH = __NET_HANDOFF__, _NW = __NET_WAIT__;
+const _BNN = __NET_BATCH_RATE__, _BNC = __NET_BATCH_COUNT__;
+const _BBR = __BATCH_RATE__, _BCN = __BATCH_COUNT__;
+const KPI = __KPI_SUMMARY__; // { orders, ordersPrev, e2e, e2ePrev, breach, breachPrev, p95, p95Prev, wait, waitPrev, mde, cpk, critical:[names], benchmark:{name,e2e,breach}, bestRecovery:{name,delta} }
+// ============================================================
+
+document.getElementById('genStamp').textContent = 'Generated ' + new Date(GENERATED_AT_ISO).toLocaleString('en-GB',{timeZone:'Africa/Cairo',dateStyle:'medium',timeStyle:'short'}) + ' Cairo · Arrow keys · click dots';
+(function checkStale(){
+  const ageHrs = (Date.now() - new Date(GENERATED_AT_ISO).getTime()) / 36e5;
+  if (ageHrs > 36) document.getElementById('staleBanner').style.display = 'block';
+})();
+
+function fmtDelta(cur, prev, dec){
+  if (cur==null || prev==null) return {text:'—', cls:'cn'};
+  const d = cur - prev;
+  if (Math.abs(d) < 0.05) return {text:'▼0.0', cls:'cn'};
+  return {text:(d>0?'▲':'▼')+Math.abs(d).toFixed(dec), cls:(d>0?'cr':'cg')};
+}
+
+// ---- KPI cards ----
+document.getElementById('kOrders').textContent = KPI.orders.toLocaleString();
+document.getElementById('kOrdersPrev').textContent = 'Prev 3-day avg: ' + KPI.ordersPrev.toLocaleString();
+document.getElementById('kE2E').textContent = KPI.e2e.toFixed(1)+' min';
+document.getElementById('kE2E').className = 'kv ' + fmtDelta(KPI.e2e, KPI.e2ePrev, 1).cls;
+document.getElementById('kE2EPrev').textContent = 'Prev 3-day: '+KPI.e2ePrev.toFixed(1)+' min';
+document.getElementById('kBreach').textContent = KPI.breach.toFixed(1)+'%';
+document.getElementById('kBreach').className = 'kv ' + fmtDelta(KPI.breach, KPI.breachPrev, 1).cls;
+document.getElementById('kBreachPrev').textContent = 'Prev 3-day: '+KPI.breachPrev.toFixed(1)+'%';
+document.getElementById('kP95').textContent = KPI.p95+' min';
+document.getElementById('kP95').className = 'kv ' + fmtDelta(KPI.p95, KPI.p95Prev, 0).cls;
+document.getElementById('kP95Prev').textContent = 'Prev 3-day: '+KPI.p95Prev+' min';
+document.getElementById('kWait').textContent = KPI.wait.toFixed(1)+' min';
+document.getElementById('kWait').className = 'kv ' + fmtDelta(KPI.wait, KPI.waitPrev, 1).cls;
+document.getElementById('kWaitPrev').textContent = 'Prev 3-day: '+KPI.waitPrev.toFixed(1)+' min';
+document.getElementById('kMDE').textContent = KPI.mde;
+document.getElementById('kMDE').className = 'kv ' + (KPI.mde>=10?'cr':(KPI.mde>=3?'ca':'cg'));
+document.getElementById('kMDELabel').textContent = 'Today · network';
+document.getElementById('kCPK').textContent = KPI.cpk.toFixed(1);
+document.getElementById('kCPK').className = 'kv ' + (KPI.cpk>=15?'cr':(KPI.cpk>=8?'ca':'cg'));
+document.getElementById('kCritCount').textContent = KPI.critical.length;
+document.getElementById('kCritList').textContent = KPI.critical.length ? ('🔴 '+KPI.critical.join(' · ')) : 'None — all stores under 50% breach';
+document.getElementById('kBenchName').textContent = KPI.benchmark.name;
+document.getElementById('kBenchStats').textContent = KPI.benchmark.e2e.toFixed(1)+' min E2E · '+KPI.benchmark.breach.toFixed(1)+'% breach';
+document.getElementById('kBestName').textContent = KPI.bestRecovery.name;
+document.getElementById('kBestStats').textContent = 'Breach Δ '+(KPI.bestRecovery.delta>=0?'+':'')+KPI.bestRecovery.delta.toFixed(1)+'pp vs prev avg';
+
+// ---- Sortable ranking tables (slide 0) ----
+function _avg3(arr){var v=arr.filter(function(x){return x!=null;});if(!v.length)return null;return v.reduce(function(a,b){return a+b;},0)/v.length;}
+function _buildRankData(valArr){
+  var out=[];
+  for(var i=0;i<SN.length;i++){
+    var cur=valArr[i][valArr[i].length-1];
+    var prev=_avg3(valArr[i].slice(valArr[i].length-4,valArr[i].length-1));
+    var delta=(cur!=null&&prev!=null)?cur-prev:null;
+    var brCur=BR[i][BR[i].length-1];
+    var dot=brCur>=50?'🔴':(brCur>=25?'🟡':'🟢');
+    out.push({store:SN[i],dot:dot,cur:cur,prev:prev,delta:delta});
+  }
+  return out;
+}
+var _rankData={e2e:_buildRankData(E2E),p95:_buildRankData(P95S)};
+var _rankSort={e2e:{key:'cur',dir:-1},p95:{key:'cur',dir:-1}};
+function _fmtNum(v,dec){return v==null?'—':v.toFixed(dec);}
+function _deltaClass(v){if(v==null)return'cn';if(Math.abs(v)<0.05)return'cn';return v>0?'cr':'cg';}
+function _deltaArrow(v){if(v==null)return'';return v>0?'▲':(v<0?'▼':'');}
+function _renderRankTable(tableKey){
+  var data=_rankData[tableKey].slice();
+  var srt=_rankSort[tableKey];
+  data.sort(function(a,b){
+    var av=srt.key==='store'?a.store:a[srt.key];
+    var bv=srt.key==='store'?b.store:b[srt.key];
+    if(av==null)return 1; if(bv==null)return -1;
+    if(typeof av==='string')return srt.dir*av.localeCompare(bv);
+    return srt.dir*(av-bv);
+  });
+  var dec=tableKey==='e2e'?1:0;
+  var body=document.getElementById(tableKey+'RankBody');
+  body.innerHTML=data.map(function(r){
+    return '<tr><td class="tl">'+r.dot+' <b>'+r.store+'</b></td><td>'+_fmtNum(r.cur,dec)+'</td><td>'+_fmtNum(r.prev,dec)+'</td>'+
+      '<td class="'+_deltaClass(r.delta)+'"><b>'+_deltaArrow(r.delta)+' '+_fmtNum(r.delta!=null?Math.abs(r.delta):null,dec)+'</b></td></tr>';
+  }).join('');
+  document.querySelectorAll('th.sortable[data-table="'+tableKey+'"]').forEach(function(th){
+    var k=th.getAttribute('data-key');
+    th.classList.toggle('sorted',k===srt.key);
+    var base=th.textContent.replace(/\s*[▲▼]$/,'');
+    if(k===srt.key) th.innerHTML=base+'<span class="arrow">'+(srt.dir===1?'▲':'▼')+'</span>';
+    else th.innerHTML=base;
+  });
+}
+document.querySelectorAll('th.sortable').forEach(function(th){
+  th.addEventListener('click',function(){
+    var tableKey=th.getAttribute('data-table');
+    var key=th.getAttribute('data-key');
+    var srt=_rankSort[tableKey];
+    if(srt.key===key) srt.dir*=-1;
+    else {srt.key=key; srt.dir=(key==='store')?1:-1;}
+    _renderRankTable(tableKey);
+  });
+});
+_renderRankTable('e2e');
+_renderRankTable('p95');
+
+// ---- Slide 1: full scorecard ----
+(function(){
+  const rows=[];
+  for(let i=0;i<SN.length;i++){
+    const e2eArr=E2E[i], brArr=BR[i], wArr=W[i];
+    const cur=e2eArr[e2eArr.length-1], prevE=_avg3(e2eArr.slice(-4,-1));
+    const brCur=brArr[brArr.length-1], prevBr=_avg3(brArr.slice(-4,-1));
+    const wCur=wArr[wArr.length-1], prevW=_avg3(wArr.slice(-4,-1));
+    rows.push({
+      i, store:SN[i], orders:SO[i], e2e:cur, de2e:fmtDelta(cur,prevE,1),
+      fulfil:FS[i][FS[i].length-1], wait:wCur, dwait:fmtDelta(wCur,prevW,1),
+      onroad:ORS[i][ORS[i].length-1], handoff:HFS[i][HFS[i].length-1],
+      breach:brCur, dbreach:fmtDelta(brCur,prevBr,1), p95:P95S[i][P95S[i].length-1],
+      mde: (KPI.mdeByStore && KPI.mdeByStore[i]) || 0,
+      cpk: (KPI.cpkByStore && KPI.cpkByStore[i]) || 0,
+    });
+  }
+  rows.sort((a,b)=>b.e2e-a.e2e);
+  const body=document.getElementById('scorecardBody');
+  body.innerHTML = rows.map(r=>{
+    const dot = r.breach>=50?'🔴':(r.breach>=25?'🟡':'🟢');
+    const e2eCls = r.breach>=50?'cr':(r.breach>=25?'ca':'cg');
+    const mdeCls = r.mde>=3?'cr':(r.mde>=1?'ca':'cm');
+    const cpkCls = r.cpk>=20?'cr':(r.cpk>=10?'ca':'cg');
+    return `<tr><td class="tl">${dot} <b>${r.store}</b></td><td>${r.orders.toLocaleString()}</td>
+      <td class="${e2eCls}">${r.e2e.toFixed(1)}</td><td class="${r.de2e.cls}">${r.de2e.text}</td>
+      <td>${r.fulfil.toFixed(1)}</td><td class="ca">${r.wait.toFixed(1)}</td><td class="${r.dwait.cls}">${r.dwait.text}</td>
+      <td>${r.onroad.toFixed(1)}</td><td>${r.handoff.toFixed(1)}</td>
+      <td class="${e2eCls}">${r.breach.toFixed(1)}%</td><td class="${r.dbreach.cls}">${r.dbreach.text}pp</td>
+      <td>${r.p95}</td><td class="${mdeCls}">${r.mde}</td><td class="${cpkCls}">${r.cpk.toFixed(1)}</td></tr>`;
+  }).join('');
+})();
+
+_reg(2,function(){
+  new Chart(document.getElementById('c1a'),{type:'line',data:{labels:DT,
+    datasets:SN.map((n,i)=>({label:n,data:E2E[i],borderColor:SC[i],backgroundColor:'transparent',borderWidth:1.5,pointRadius:3,tension:.2,spanGaps:true}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'right',labels:{font:{size:8},boxWidth:8,padding:4}},tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{min:6,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+' min',font:{size:9}}}}}});
+  new Chart(document.getElementById('c1b'),{type:'line',data:{labels:DT,
+    datasets:SN.map((n,i)=>({label:n,data:BR[i],borderColor:SC[i],backgroundColor:'transparent',borderWidth:1.5,pointRadius:3,tension:.2,spanGaps:true}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'right',labels:{font:{size:8},boxWidth:8,padding:4}},tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{min:0,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+'%',font:{size:9}}}}}});
+});
+
+_reg(3,function(){
+  new Chart(document.getElementById('c3a'),{type:'bar',data:{labels:SN,datasets:[
+    {label:'Fulfil',data:F1,backgroundColor:'#0E7C7B',stack:'s'},
+    {label:'Wait Rider',data:W1,backgroundColor:'#E24B4A',stack:'s'},
+    {label:'On Road',data:O1,backgroundColor:'#378ADD',stack:'s'},
+    {label:'Handoff',data:H1,backgroundColor:'#F59E0B',stack:'s'}
+  ]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+    plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+c.raw+' min'}}},
+    scales:{x:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+' min',font:{size:9}}},y:{stacked:true,grid:{display:false},ticks:{font:{size:8}}}}}});
+  new Chart(document.getElementById('c3b'),{type:'line',data:{labels:DT,
+    datasets:HW.map((i,j)=>({label:SN[i],data:W[i],borderColor:HC[j],backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:.2,spanGaps:true}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{min:0,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+' min',font:{size:9}}}}}});
+});
+
+let _dd1=null,_dd2=null;
+function pickS(el,idx){
+  document.querySelectorAll('.sp').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  if(_dd1){_dd1.destroy();_dd1=null;} if(_dd2){_dd2.destroy();_dd2=null;}
+  document.getElementById('ddt1').textContent=SN[idx]+' — E2E · P95 · Breach';
+  document.getElementById('ddt2').textContent=SN[idx]+' — Time Decomposition';
+  _dd1=new Chart(document.getElementById('dd1'),{type:'line',data:{labels:DT,datasets:[
+    {label:'E2E',data:E2E[idx],borderColor:'#0E7C7B',borderWidth:2.5,pointRadius:5,tension:.2,fill:false,yAxisID:'y',spanGaps:true},
+    {label:'P95',data:P95S[idx],borderColor:'#8B5CF6',borderWidth:2,pointRadius:4,tension:.2,fill:false,yAxisID:'y',borderDash:[6,3],spanGaps:true},
+    {label:'Breach %',data:BR[idx],borderColor:'#E24B4A',borderWidth:2,pointRadius:5,tension:.2,fill:false,yAxisID:'y2',borderDash:[4,3],spanGaps:true}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false}},
+    scales:{x:{grid:{display:false}},y:{min:0,grid:{color:'rgba(0,0,0,.06)'},ticks:{callback:v=>v+' min',font:{size:9}}},y2:{position:'right',min:0,max:100,grid:{display:false},ticks:{callback:v=>v+'%',font:{size:9}}}}}});
+  _dd2=new Chart(document.getElementById('dd2'),{type:'bar',data:{labels:DT,datasets:[
+    {label:'Fulfil',data:FS[idx],backgroundColor:'#0E7C7B',stack:'s'},
+    {label:'Wait Rider',data:W[idx],backgroundColor:'#E24B4A',stack:'s'},
+    {label:'On Road',data:ORS[idx],backgroundColor:'#378ADD',stack:'s'},
+    {label:'Handoff',data:HFS[idx],backgroundColor:'#F59E0B',stack:'s'}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+c.raw+' min'}}},
+    scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(0,0,0,.06)'},ticks:{callback:v=>v+' min',font:{size:9}}}}}});
+}
+_reg(4,function(){
+  const picker=document.getElementById('storePicker');
+  picker.innerHTML = SN.map((n,i)=>`<div class="sp${i===0?' active':''}" onclick="pickS(this,${i})">${n}</div>`).join('');
+  pickS(picker.querySelector('.sp'),0);
+});
+
+_reg(5,function(){
+  const idxSorted=SN.map((_,i)=>i).sort((a,b)=>SOT[a][SOT[a].length-1]-SOT[b][SOT[b].length-1]).reverse();
+  const SS=idxSorted.map(i=>SN[i]);
+  const SOT2=idxSorted.map(i=>SOT[i][SOT[i].length-1]);
+  const FP=SN.map((_,i)=>Math.round(100*FS[i][FS[i].length-1]/E2E[i][E2E[i].length-1]*10)/10);
+  const WP=SN.map((_,i)=>Math.round(100*W[i][W[i].length-1]/E2E[i][E2E[i].length-1]*10)/10);
+  const OP=SN.map((_,i)=>Math.round(100*ORS[i][ORS[i].length-1]/E2E[i][E2E[i].length-1]*10)/10);
+  const HP=SN.map((_,i)=>Math.round(100*HFS[i][HFS[i].length-1]/E2E[i][E2E[i].length-1]*10)/10);
+  const OLM=SN.map((_,i)=>SOR[i][SOR[i].length-1]);
+  const WA=W1, HA=H1;
+  function hBar(id,lbl,dat,colorFn,tickCb){
+    new Chart(document.getElementById(id),{type:'bar',
+      data:{labels:lbl,datasets:[{label:'',data:dat,backgroundColor:dat.map(colorFn)}]},
+      options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>tickCb(c.raw)}}},
+        scales:{x:{min:0,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:tickCb,font:{size:9}}},
+                y:{grid:{display:false},ticks:{font:{size:8}}}}}});
+  }
+  hBar('c5a',SS,SOT2, v=>v>=80?'#1D9E75':v>=60?'#F59E0B':'#E24B4A', v=>v+'%');
+  new Chart(document.getElementById('c5b'),{type:'bar',
+    data:{labels:SN,datasets:[
+      {label:'Fulfil %',data:FP,backgroundColor:'#0E7C7B',stack:'s'},
+      {label:'Pick-Up Wait %',data:WP,backgroundColor:'#E24B4A',stack:'s'},
+      {label:'On-Road %',data:OP,backgroundColor:'#378ADD',stack:'s'},
+      {label:'Handoff %',data:HP,backgroundColor:'#F59E0B',stack:'s'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}},
+      scales:{x:{stacked:true,max:100,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+'%',font:{size:9}}},
+              y:{stacked:true,grid:{display:false},ticks:{font:{size:8}}}}}});
+  hBar('c5c',SN,OLM, v=>v>=75?'#E24B4A':v>=65?'#F59E0B':'#1D9E75', v=>v+'%');
+  new Chart(document.getElementById('c5d'),{type:'bar',
+    data:{labels:SN,datasets:[
+      {label:'Pick-Up Wait (min)',data:WA,backgroundColor:'#E24B4A'},
+      {label:'Handoff (min)',data:HA,backgroundColor:'#F59E0B'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>v+' min',font:{size:9}}},
+              y:{grid:{display:false},ticks:{font:{size:8}}}}}});
+});
+
+var _drC={};
+function _draw(pwId,canId,data,color,label,fmt,ref){
+  var pw=document.getElementById(pwId);
+  if(!pw) return;
+  var ds=[{label:label,data:data,borderColor:color,backgroundColor:color+'22',borderWidth:2.5,pointRadius:5,tension:0.25,fill:true,spanGaps:true}];
+  if(ref!==undefined) ds.push({label:'Target',data:DT.map(function(){return ref;}),borderColor:'#1D9E75',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false});
+  if(_drC[canId]){_drC[canId].data.datasets=ds;_drC[canId].update();return;}
+  _drC[canId]=new Chart(document.getElementById(canId),{type:'line',
+    data:{labels:DT,datasets:ds},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},
+        tooltip:{mode:'index',intersect:false,callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!=null?fmt(c.raw):'n/a');}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:fmt,font:{size:9}}}}}});
+}
+function _kpiUpdate(){
+  var sel=document.getElementById('kpiSel');
+  var idx=parseInt(sel.value,10);
+  var ot,orr,hf,wr,col;
+  if(isNaN(idx)||idx<0){ot=_NN;orr=_NO;hf=_NH;wr=_NW;col='#0E7C7B';document.getElementById('kpiBadge').textContent='';}
+  else{ot=SOT[idx];orr=SOR[idx];hf=HFS[idx];wr=W[idx];col='#378ADD';document.getElementById('kpiBadge').textContent='Total: '+SO[idx].toLocaleString()+' orders this week';}
+  _draw('pw_c6a','c6a',ot,col,'On-Time %',v=>v+'%',80);
+  _draw('pw_c6b','c6b',orr,col,'On-Road % of LM',v=>v+'%');
+  _draw('pw_c6c','c6c',hf,col,'Avg Handoff',v=>v+' min');
+  _draw('pw_c6d','c6d',wr,col,'Avg Pick-Up Wait',v=>v+' min');
+}
+_reg(6,function(){
+  const sel=document.getElementById('kpiSel');
+  sel.innerHTML = '<option value="-1">Network (all stores)</option>' + SN.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
+  sel.addEventListener('change',_kpiUpdate);
+  _kpiUpdate();
+});
+
+var _bdC={};
+function _bdraw(pwId,canId,datasets,yFmt){
+  var pw=document.getElementById(pwId);
+  if(!pw) return;
+  if(_bdC[canId]){_bdC[canId].data.datasets=datasets;_bdC[canId].update();return;}
+  _bdC[canId]=new Chart(document.getElementById(canId),{type:'line',
+    data:{labels:DT,datasets:datasets},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{size:9},boxWidth:8}},
+        tooltip:{mode:'index',intersect:false,callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!=null?yFmt(c.raw):'n/a');}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{min:0,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:yFmt,font:{size:9}}}}}});
+}
+function _batchUpdate(){
+  var sel=document.getElementById('batchSel');
+  var idx=parseInt(sel.value,10);
+  var br,cnt,col;
+  if(isNaN(idx)||idx<0){br=_BNN;cnt=_BNC;col='#0E7C7B';document.getElementById('batchBadge').textContent='';}
+  else{br=_BBR[idx];cnt=_BCN[idx];col='#378ADD';var tot=cnt.reduce((a,b)=>a+(b||0),0);document.getElementById('batchBadge').textContent=tot+' batched orders this week';}
+  _bdraw('pb_br','bc_br',[{label:'Batch Rate % (batch_flag=batched)',data:br,borderColor:col,backgroundColor:col+'22',borderWidth:2.5,pointRadius:5,tension:0.25,fill:true,spanGaps:true}],v=>v+'%');
+  _bdraw('pb_ppt','bc_ppt',[{label:'Batched Order Count',data:cnt,borderColor:col,backgroundColor:col+'22',borderWidth:2.5,pointRadius:5,tension:0.25,fill:true,spanGaps:true}],v=>v+' orders');
+}
+_reg(7,function(){
+  const sel=document.getElementById('batchSel');
+  sel.innerHTML = '<option value="-1">Network (all stores)</option>' + SN.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
+  sel.addEventListener('change',_batchUpdate);
+  _batchUpdate();
+});
+
+document.addEventListener('DOMContentLoaded',()=>{_done[0]=1;goTo(0);});
+</script></body></html>
