@@ -45,11 +45,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <body><div class="shell">
 <div class="stale-banner" id="staleBanner">⚠ This data is more than 36 hours old — the daily refresh may have failed. Check the Apps Script trigger.</div>
 <div class="nt">
-  <div><div class="ntl" id="ntl">__TITLE__ Performance Brief</div><div class="nts">Egypt Noon Minutes · __REPORT_DATE_LONG__ · 19 Stores (incl. New Giza) · vs __PREV_WINDOW_LABEL__ trend</div></div>
+  <div><div class="ntl" id="ntl">Sep 13 Performance Brief</div><div class="nts">Egypt Noon Minutes · Sep 13 2026 · 19 Stores (incl. New Giza) · vs Sep 10–Sep 12 trend</div></div>
   <div class="ndd"><div class="nd na" onclick="goTo(0)"></div><div class="nd" onclick="goTo(1)"></div><div class="nd" onclick="goTo(2)"></div><div class="nd" onclick="goTo(3)"></div><div class="nd" onclick="goTo(4)"></div><div class="nd" onclick="goTo(5)"></div><div class="nd" onclick="goTo(6)"></div><div class="nd" onclick="goTo(7)"></div></div>
   <div class="nc" id="nc">1 / 8</div>
 </div>
-<div class="vp"><div class="sl sa" id="sl0"><div class="si"><div class="sh"><div class="st">__TITLE__ Performance Brief</div><div class="ss">Egypt Noon Minutes · __REPORT_DATE_LONG__ · All 19 stores incl. New Giza · vs __PREV_WINDOW_LABEL__ avg · 🔴 🟡 🟢</div></div><div class="sb"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex-shrink:0">
+<div class="vp"><div class="sl sa" id="sl0"><div class="si"><div class="sh"><div class="st">Sep 13 Performance Brief</div><div class="ss">Egypt Noon Minutes · Sep 13 2026 · All 19 stores incl. New Giza · vs Sep 10–Sep 12 avg · 🔴 🟡 🟢</div></div><div class="sb"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex-shrink:0">
   <div class="kc"><div class="kl">NETWORK ORDERS</div><div class="kv " id="kOrders"></div><div class="ks" id="kOrdersPrev"></div></div>
   <div class="kc"><div class="kl">AVG E2E</div><div class="kv" id="kE2E"></div><div class="ks" id="kE2EPrev"></div></div>
   <div class="kc"><div class="kl">SLA BREACH</div><div class="kv" id="kBreach"></div><div class="ks" id="kBreachPrev"></div></div>
@@ -63,11 +63,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;min-height:0;margin-top:8px">
   <div style="display:flex;flex-direction:column;gap:6px;min-height:0">
-    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">⏱ E2E Ranking — __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
+    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">⏱ E2E Ranking — Sep 13 vs Sep 10–Sep 12 avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
     <div class="tw" style="flex:1;min-height:0"><table class="dt" id="e2eRankTable">
       <thead><tr>
         <th class="tl sortable" data-key="store" data-table="e2e">Store</th>
-        <th class="sortable" data-key="cur" data-table="e2e">__REPORT_DATE_SHORT__</th>
+        <th class="sortable" data-key="cur" data-table="e2e">Sep 13</th>
         <th class="sortable" data-key="prev" data-table="e2e">Prev Avg</th>
         <th class="sortable" data-key="delta" data-table="e2e">Δ</th>
       </tr></thead>
@@ -75,11 +75,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </table></div>
   </div>
   <div style="display:flex;flex-direction:column;gap:6px;min-height:0">
-    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">📈 P95 Ranking — __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
+    <div style="font-size:12px;font-weight:700;color:#0D1B3E;flex-shrink:0">📈 P95 Ranking — Sep 13 vs Sep 10–Sep 12 avg <span style="font-weight:400;color:#9CA3AF;font-size:9px">(click headers to sort)</span></div>
     <div class="tw" style="flex:1;min-height:0"><table class="dt" id="p95RankTable">
       <thead><tr>
         <th class="tl sortable" data-key="store" data-table="p95">Store</th>
-        <th class="sortable" data-key="cur" data-table="p95">__REPORT_DATE_SHORT__</th>
+        <th class="sortable" data-key="cur" data-table="p95">Sep 13</th>
         <th class="sortable" data-key="prev" data-table="p95">Prev Avg</th>
         <th class="sortable" data-key="delta" data-table="p95">Δ</th>
       </tr></thead>
@@ -88,7 +88,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div></div></div></div>
 
-<div class="sl " id="sl1"><div class="si"><div class="sh"><div class="st">__TITLE__ — Full Store Scorecard vs Trend</div><div class="ss">All 19 stores sorted by E2E · __REPORT_DATE_SHORT__ vs __PREV_WINDOW_LABEL__ avg · Δ = change from prior 3-day average</div></div><div class="sb"><div class="tw" style="flex:1;min-height:0">
+<div class="sl " id="sl1"><div class="si"><div class="sh"><div class="st">Sep 13 — Full Store Scorecard vs Trend</div><div class="ss">All 19 stores sorted by E2E · Sep 13 vs Sep 10–Sep 12 avg · Δ = change from prior 3-day average</div></div><div class="sb"><div class="tw" style="flex:1;min-height:0">
 <table class="dt"><thead><tr>
   <th class="tl">Store</th><th>Orders</th><th>E2E</th><th>Δ E2E</th><th>Fulfil</th>
   <th>Wait Rider</th><th>Δ Wait</th><th>On Road</th><th>Handoff</th>
@@ -96,24 +96,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </tr></thead>
 <tbody id="scorecardBody"></tbody></table></div></div></div></div>
 
-<div class="sl " id="sl2"><div class="si"><div class="sh"><div class="st">E2E & SLA Breach — 7-Day Trend per Store</div><div class="ss" id="sl2sub">__WINDOW_LABEL__</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
-  <div class="cb fd"><div class="ct">Avg E2E — __WINDOW_LABEL__</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1a"></canvas></div></div>
-  <div class="cb fd"><div class="ct">SLA Breach % — __WINDOW_LABEL__</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1b"></canvas></div></div>
+<div class="sl " id="sl2"><div class="si"><div class="sh"><div class="st">E2E & SLA Breach — 7-Day Trend per Store</div><div class="ss" id="sl2sub">Sep 7–Sep 13</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
+  <div class="cb fd"><div class="ct">Avg E2E — Sep 7–Sep 13</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1a"></canvas></div></div>
+  <div class="cb fd"><div class="ct">SLA Breach % — Sep 7–Sep 13</div><div class="cs">7-day trend across all stores</div><div class="cw"><canvas id="c1b"></canvas></div></div>
 </div></div></div></div>
 
-<div class="sl " id="sl3"><div class="si"><div class="sh"><div class="st">Last Mile Decomposition — __REPORT_DATE_SHORT__</div><div class="ss">Fulfil + Wait Rider + On-Road + Handoff · Where time is lost today</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
-  <div class="cb fd"><div class="ct">E2E Breakdown — __REPORT_DATE_SHORT__</div><div class="cs">Stacked: Fulfil · Wait Rider (red) · On-Road · Handoff</div><div class="cw"><canvas id="c3a"></canvas></div></div>
-  <div class="cb fd"><div class="ct">Wait-for-Rider Trend — __WINDOW_LABEL__ (top 5 volatility stores)</div><div class="cs">Stores with the widest wait-time swing this week</div><div class="cw"><canvas id="c3b"></canvas></div></div>
+<div class="sl " id="sl3"><div class="si"><div class="sh"><div class="st">Last Mile Decomposition — Sep 13</div><div class="ss">Fulfil + Wait Rider + On-Road + Handoff · Where time is lost today</div></div><div class="sb"><div class="g2" style="flex:1;min-height:0;gap:10px">
+  <div class="cb fd"><div class="ct">E2E Breakdown — Sep 13</div><div class="cs">Stacked: Fulfil · Wait Rider (red) · On-Road · Handoff</div><div class="cw"><canvas id="c3a"></canvas></div></div>
+  <div class="cb fd"><div class="ct">Wait-for-Rider Trend — Sep 7–Sep 13 (top 5 volatility stores)</div><div class="cs">Stores with the widest wait-time swing this week</div><div class="cw"><canvas id="c3b"></canvas></div></div>
 </div></div></div></div>
 
-<div class="sl " id="sl4"><div class="si"><div class="sh"><div class="st">Store Drilldown — __WINDOW_LABEL__</div><div class="ss">Click a store · E2E · P95 · Breach dual-axis + time decomposition</div></div><div class="sb"><div id="storePicker" style="display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0;margin-bottom:8px"></div>
+<div class="sl " id="sl4"><div class="si"><div class="sh"><div class="st">Store Drilldown — Sep 7–Sep 13</div><div class="ss">Click a store · E2E · P95 · Breach dual-axis + time decomposition</div></div><div class="sb"><div id="storePicker" style="display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0;margin-bottom:8px"></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
   <div class="cb fd"><div class="ct" id="ddt1">E2E · P95 · Breach</div><div class="cw"><canvas id="dd1"></canvas></div></div>
   <div class="cb fd"><div class="ct" id="ddt2">Time Decomposition</div><div class="cw"><canvas id="dd2"></canvas></div></div>
 </div></div></div></div>
 
 <div class="sl " id="sl5"><div class="si">
-<div class="sh"><div class="st">Network Time Profile — __REPORT_DATE_SHORT__</div><div class="ss">All delivered orders · On-time delivery % · E2E composition · On-Road · Handoff · Pick-up wait · weighted by order volume</div></div>
+<div class="sh"><div class="st">Network Time Profile — Sep 13</div><div class="ss">All delivered orders · On-time delivery % · E2E composition · On-Road · Handoff · Pick-up wait · weighted by order volume</div></div>
 <div class="sb">
   <div class="g2" style="flex:1;min-height:0;gap:10px">
     <div class="cb fd"><div class="ct">% On-Time Delivery by Store</div><div class="cs">On-time = E2E ≤15 min · sorted best→worst · target 80%+</div><div class="cw"><canvas id="c5a"></canvas></div></div>
@@ -126,7 +126,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 </div></div>
 <div class="sl " id="sl6"><div class="si">
-<div class="sh"><div class="st">Network KPI Trends — __WINDOW_LABEL__</div><div class="ss">7-day daily trends per store or network · On-time % · On-road % of last mile · Avg handoff · Avg pick-up wait</div></div>
+<div class="sh"><div class="st">Network KPI Trends — Sep 7–Sep 13</div><div class="ss">7-day daily trends per store or network · On-time % · On-road % of last mile · Avg handoff · Avg pick-up wait</div></div>
 <div class="sb">
   <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;margin-bottom:2px">
     <div style="font-size:11px;font-weight:600;color:#0D1B3E">Filter store:</div>
@@ -144,7 +144,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 </div></div>
 <div class="sl " id="sl7"><div class="si">
-<div class="sh"><div class="st">Batching Trends — __WINDOW_LABEL__</div><div class="ss">batch_flag='batched' rate % · Batched order count · Source: noonbinimlog.core.geomap · filter by store or view network</div></div>
+<div class="sh"><div class="st">Batching Trends — Sep 7–Sep 13</div><div class="ss">batch_flag='batched' rate % · Batched order count · Source: noonbinimlog.core.geomap · filter by store or view network</div></div>
 <div class="sb">
   <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;margin-bottom:4px">
     <div style="font-size:11px;font-weight:600;color:#0D1B3E">Filter store:</div>
@@ -163,7 +163,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div></div>
 <script>
 Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
-let cur=0;const TOT=8;const LBL=['__TITLE__ Performance Brief','__TITLE__ — Full Store Scorecard vs Trend','E2E & SLA Breach — 7-Day Trend per Store','Last Mile Decomposition — __REPORT_DATE_SHORT__','Store Drilldown — __WINDOW_LABEL__','Network Time Profile — __REPORT_DATE_SHORT__','Network KPI Trends — __WINDOW_LABEL__','Batching Trends — __WINDOW_LABEL__'];
+let cur=0;const TOT=8;const LBL=['Sep 13 Performance Brief','Sep 13 — Full Store Scorecard vs Trend','E2E & SLA Breach — 7-Day Trend per Store','Last Mile Decomposition — Sep 13','Store Drilldown — Sep 7–Sep 13','Network Time Profile — Sep 13','Network KPI Trends — Sep 7–Sep 13','Batching Trends — Sep 7–Sep 13'];
 const _done={},_fns={};
 function _reg(i,fn){_fns[i]=fn;}
 function goTo(i){
@@ -185,27 +185,27 @@ document.addEventListener('keydown',e=>{
 // ============================================================
 // INJECTED DATA — replaced wholesale by Apps Script on every run
 // ============================================================
-const GENERATED_AT_ISO = "__GENERATED_AT_ISO__";
-const SN = __SN__;
-const SC = __SC__;
-const DT = __DT__;
-const E2E = __E2E__;
-const BR = __BR__;
-const P95S = __P95S__;
-const W = __WAIT__;
-const FS = __FULFIL__;
-const ORS = __ONROAD__;
-const HFS = __HANDOFF__;
-const SOT = __ONTIME__;
-const SOR = __ONROAD_PCT_LM__;
-const SO = __TOTAL_ORDERS_7D__;
-const F1 = __FULFIL_TODAY__, W1 = __WAIT_TODAY__, O1 = __ONROAD_TODAY__, H1 = __HANDOFF_TODAY__;
-const HW = __TOP5_WAIT_VOL_IDX__;
-const HC = __TOP5_WAIT_VOL_COLOR__;
-const _NN = __NET_ONTIME__, _NO = __NET_ONROAD_PCT__, _NH = __NET_HANDOFF__, _NW = __NET_WAIT__;
-const _BNN = __NET_BATCH_RATE__, _BNC = __NET_BATCH_COUNT__;
-const _BBR = __BATCH_RATE__, _BCN = __BATCH_COUNT__;
-const KPI = __KPI_SUMMARY__; // { orders, ordersPrev, e2e, e2ePrev, breach, breachPrev, p95, p95Prev, wait, waitPrev, mde, cpk, critical:[names], benchmark:{name,e2e,breach}, bestRecovery:{name,delta} }
+const GENERATED_AT_ISO = "2026-09-14T05:48:44.822Z";
+const SN = ["6th Oct","Dokki","5th Settl","El Banafseg","Hadayek A2","Haram","Heliopolis 2","Maadi 2","Marassi NC","Mokattam 2","Nasr City","Nasr City 2","Golden SQ","Seashell NC","Sheikh Zayed","Sheraton","Sherouk","Zahraa Maadi","New Giza"];
+const SC = ["#0E7C7B","#E24B4A","#378ADD","#F59E0B","#8B5CF6","#F97316","#06B6D4","#84CC16","#EC4899","#6366F1","#14B8A6","#94A3B8","#DC2626","#7C3AED","#0891B2","#D946EF","#65A30D","#0EA5E9","#F43F5E"];
+const DT = ["Sep 7","Sep 8","Sep 9","Sep 10","Sep 11","Sep 12","Sep 13"];
+const E2E = [[19.6,15.8,16.4,18.3,15.3,19.2,16.7],[10.5,10,10.1,9.8,10.2,10.1,11.1],[17.3,17.8,19.3,19.1,16.9,16.9,17.4],[16,15.4,16.5,15.3,15.1,16.9,14.7],[10.4,9.7,9.7,9.5,9.9,10.1,9.9],[11,10.2,10.4,11.8,11.8,10.7,10.2],[16,15.5,15.4,16.7,15.2,16.4,15.4],[15.1,14.7,15.1,17.8,14.6,14.8,14.8],[24.8,23.7,22.6,21.9,21.2,22,20.8],[13.9,12.9,13.8,14.8,14,14.2,14.2],[21.7,19.8,19.6,19,19,20.2,18.5],[13.1,11.9,11.6,12.8,12.1,11.6,12.1],[23.2,21.3,21.4,20,19.8,20.8,22.2],[22.5,20.3,21.4,25.4,20.7,16.1,null],[19.5,19.8,16.3,17.8,18,16.4,17.4],[14.1,12.5,12.2,13.7,12.5,13.5,12.9],[16.9,14.9,15.5,15.4,14.9,15.3,14.6],[13,12.4,11.2,12.1,12.4,11,12.5],[21.8,24.1,19.2,22.4,18.2,20,20]];
+const BR = [[59.6,46.2,49.6,60.3,46.5,53.5,50.2],[9.3,7.2,7.4,7.6,10,8.9,16.3],[61,63.4,63.5,62.9,59.9,56,58.8],[48.9,45.1,48.6,42.5,41.3,47.5,40],[10.1,7.5,7.2,3.9,7.9,9.6,8.3],[12.4,6.6,7,17.9,16.8,10.1,7.6],[48.2,44.6,41.8,51.5,40,48.9,43],[40.3,44.1,45.6,51.3,39.1,39.6,39.5],[64.6,61.1,67.3,66.5,65.4,62.5,57.9],[35.5,30,34.7,42.4,36.3,36.4,37.3],[60,63.3,59.5,62.5,62,65,61.9],[27.6,17.2,13.3,22.1,17.1,15.1,17.3],[76.9,72.7,77.5,74,72.5,74.3,79],[60.7,52.3,63.2,69,72.2,44.4,null],[74.8,72.3,55.7,53.5,65,52.3,62.3],[30.8,27.2,21.1,32.7,26.5,32.2,30.3],[49.1,43.4,42.5,44.5,45.9,43.8,39.7],[27,19.3,16.4,21.1,22.7,19.4,24.2],[73.9,74,67,76.8,68.7,71.9,71]];
+const P95S = [[41,29,29,35,27,46,31],[17,16,16,16,18,16,21],[29,28,36,34,27,27,28],[29,26,31,28,27,28,26],[18,16,16,15,17,17,17],[19,15,15,20,20,16,16],[29,28,26,31,26,30,27],[27,24,24,37,23,25,24],[52,47,45,40,44,40,43],[27,22,25,28,27,26,25],[52,39,42,36,35,41,35],[23,19,17,23,20,18,21],[44,42,36,34,31,38,40],[60,56,54,43,37,40,null],[34,34,28,36,35,26,29],[30,22,19,24,20,23,22],[31,25,27,26,25,26,23],[25,20,18,20,19,19,21],[44,50,36,46,35,39,39]];
+const W = [[3.5,2.2,1.8,3.3,1.5,3.7,2],[0.9,0.9,1,1.1,1,0.9,1],[2.2,2.5,3.3,3.6,2.2,2.1,2.8],[2.2,2.3,3.6,2.5,2.7,2.9,2.3],[0.7,0.7,0.7,0.8,0.8,0.8,0.8],[1.2,1,1.2,1.5,1.2,1.1,1],[2.7,2.5,2.3,3,2.1,2.6,1.9],[1.3,1.2,1.5,3.6,1.5,1.3,1.4],[2.4,3,2.6,2.6,2.6,2.6,2.5],[1.5,1.6,1.7,2,1.7,1.8,1.9],[5.2,3.9,3.5,3.1,3,3.7,3],[2.1,1.3,1.3,2,1.7,1.1,1.3],[4.4,3,2.7,1.6,2.1,1.7,3.1],[3.9,3.6,4.8,5.4,3.5,3.1,null],[2.8,2.7,2,2.7,2.2,1.4,1.3],[2.8,1.9,1.9,2.4,1.9,2.4,2.1],[2.7,1.6,2,2.2,1.4,1.7,1.5],[1.7,1.2,1.1,1.5,1.6,1.4,1.4],[5.3,3.2,3.1,4.4,2.2,3,2.9]];
+const FS = [[2.2,1.8,1.9,1.9,2,2.3,1.9],[3,2.2,2.3,2,2.3,2,2.4],[3,3.1,3.1,2.7,3,2.7,2.4],[3.3,2.5,2.3,2.4,2.2,3.1,1.8],[2.8,2.1,2.5,2,2.1,2.1,1.9],[2.2,1.7,1.6,1.9,1.9,1.8,1.7],[2.5,2.2,2.2,2.1,2.2,1.9,2],[2.4,1.8,2.2,2.3,1.9,2.1,2],[2.9,2.9,3.6,2.9,3.3,3,2.6],[2.6,1.9,1.8,2,1.9,2,1.9],[2.8,2.4,2.4,2.6,2.5,2.6,2],[2.5,2,2.1,2.4,2.3,1.9,2.1],[3.5,2.8,3.2,3.9,3.5,4.3,4.5],[2.4,2.1,2.2,2.7,2.6,2.2,null],[2.5,2.4,2.2,2.2,2.1,2.4,2.5],[2,1.7,1.9,1.9,1.7,1.6,1.7],[3,2.4,2.4,2.7,2.7,2.5,2.6],[2.2,2.4,2,2,2,2,2],[2.2,2.1,1.6,1.6,1.7,1.7,1.7]];
+const ORS = [[10.2,8.6,9,9.7,8.6,10.1,9.4],[4.6,4.9,4.6,4.5,4.7,5,5.1],[8.5,8.6,8.6,8.7,8.1,8.5,8.5],[7.9,8,7.7,7.6,7.7,8.1,7.9],[5.2,5.1,4.8,4.9,5,5.2,5.1],[5.3,5.1,5.4,5.9,6,5.3,4.7],[8.1,7.9,7.9,8.7,7.9,8.8,8.4],[8.4,8.3,8.2,8.9,8,8.2,8.1],[12.1,11.9,10.5,10.9,10.9,10.7,9.9],[7.1,6.8,7.6,8.1,7.2,7.6,7.5],[7.2,8.5,8.2,9.6,8.9,9.3,9.3],[6,6.1,5.8,5.9,5.8,6,6.2],[10.7,10.4,10.9,9.9,9.7,9.8,10.3],[11,10.4,10,11.1,11.2,8.5,null],[11,11,4.4,5.1,7,5.6,7.5],[7,6.9,6.6,7.6,7,7.3,7],[8.6,8.3,8.7,8.2,8.6,8.7,8.1],[6.4,6.5,5.9,6.3,6.5,5.4,6.3],[10.7,12.9,11,12.6,10.5,11.7,11.5]];
+const HFS = [[3.7,3.3,3.6,3.4,3.2,3,3.4],[1.9,2,2.1,2.2,2.2,2.3,2.6],[3.5,3.5,4.3,4.1,3.7,3.6,3.7],[2.6,2.7,2.9,2.7,2.5,2.7,2.7],[1.7,1.7,1.7,1.7,1.9,2.1,2],[2.2,2.4,2.2,2.5,2.7,2.5,2.8],[2.7,2.9,3,2.9,2.9,3.1,3.1],[3,3.4,3.1,3.1,3.1,3.1,3.2],[7.4,5.9,5.9,5.4,4.4,5.8,5.8],[2.7,2.6,2.7,2.8,3.2,2.8,2.9],[6.5,5,5.5,3.7,4.6,4.6,4.2],[2.6,2.5,2.4,2.5,2.3,2.6,2.5],[4.6,5.2,4.6,4.6,4.5,5,4.3],[5.2,4.3,4.5,6.2,3.5,2.4,null],[3.3,3.8,7.7,7.8,6.6,6.9,6],[2.4,2,1.8,1.8,1.8,2.2,2],[2.6,2.5,2.4,2.3,2.3,2.4,2.3],[2.7,2.3,2.1,2.3,2.3,2.2,2.7],[3.6,6,3.5,3.8,3.9,3.7,3.9]];
+const SOT = [[40.4,53.8,50.4,39.7,53.5,46.5,49.8],[90.7,92.8,92.6,92.4,90,91.1,83.7],[39,36.6,36.5,37.1,40.1,44,41.2],[51.1,54.9,51.4,57.5,58.7,52.5,60],[89.9,92.5,92.8,96.1,92.1,90.4,91.7],[87.6,93.4,93,82.1,83.2,89.9,92.4],[51.8,55.4,58.2,48.5,60,51.1,57],[59.7,55.9,54.4,48.7,60.9,60.4,60.5],[35.4,38.9,32.7,33.5,34.6,37.5,42.1],[64.5,70,65.3,57.6,63.7,63.6,62.7],[40,36.7,40.5,37.5,38,35,38.1],[72.4,82.8,86.7,77.9,82.9,84.9,82.7],[23.1,27.3,22.5,26,27.5,25.7,21],[39.3,47.7,36.8,31,27.8,55.6,null],[25.2,27.7,44.3,46.5,35,47.7,37.7],[69.2,72.8,78.9,67.3,73.5,67.8,69.7],[50.9,56.6,57.5,55.5,54.1,56.3,60.3],[73,80.7,83.6,78.9,77.3,80.6,75.8],[26.1,26,33,23.2,31.3,28.1,29]];
+const SOR = [[58.8,61.4,62.6,59.2,64.5,60.2,63.3],[61.7,62.9,59.2,57.1,58.6,61.1,58.3],[59.5,58.4,53.1,52.8,58.3,60,56.6],[62.1,61.7,54.5,59.2,60.1,59.1,61.1],[67.8,67.6,66.1,66.3,64.4,64.1,64.4],[60.9,59.7,61,59.2,60.4,59.5,55.3],[59.9,59.5,59.9,59.8,61.2,60.6,62.7],[66.2,64.1,63.7,57.1,63.1,64.7,63.5],[55.3,57.4,55.3,57.7,61.1,56.4,54.3],[62.8,61.9,63.8,62.7,59.8,62.6,61.1],[38.2,48.9,47.5,58.7,54.1,52.7,56.4],[56.1,61.7,61.6,57.1,59.3,62.4,61.9],[54.4,56,60,61.3,59.3,59.2,58.4],[54.8,57,52.1,48.7,61.7,61,null],[64.5,62.7,31.4,32.7,44,40.1,50.7],[57.5,64.1,64.2,64.1,65.3,61.6,62.8],[62,66.8,66.6,64.5,70.1,67.4,67.6],[59.3,65.1,64.6,62.2,62.7,60.1,60.3],[54.6,58.4,62.7,60.8,63.4,63.8,62.9]];
+const SO = [4273,2155,4448,3561,4445,2481,2684,3159,2778,2973,4006,2271,3478,258,2192,1804,2303,2434,1522];
+const F1 = [1.9,2.4,2.4,1.8,1.9,1.7,2,2,2.6,1.9,2,2.1,4.5,null,2.5,1.7,2.6,2,1.7], W1 = [2,1,2.8,2.3,0.8,1,1.9,1.4,2.5,1.9,3,1.3,3.1,null,1.3,2.1,1.5,1.4,2.9], O1 = [9.4,5.1,8.5,7.9,5.1,4.7,8.4,8.1,9.9,7.5,9.3,6.2,10.3,null,7.5,7,8.1,6.3,11.5], H1 = [3.4,2.6,3.7,2.7,2,2.8,3.1,3.2,5.8,2.9,4.2,2.5,4.3,null,6,2,2.3,2.7,3.9];
+const HW = [18,12,7,13,0];
+const HC = ["#DC2626","#06B6D4","#14B8A6","#84CC16","#0891B2"];
+const _NN = [53.9,56.9,57.7,55.3,58.6,57.4,57.6], _NO = [57.5,59.8,57.7,58,60.2,59.2,59.8], _NH = [3.4,3.3,3.5,3.3,3.2,3.4,3.3], _NW = [2.6,2.1,2.2,2.5,1.9,2.1,2];
+const _BNN = [4.48,2.6,2.65,3.93,1.49,2.59,1.9], _BNC = [342,189,195,310,123,204,132];
+const _BBR = [[15.04,4.43,2.31,7.05,1,10.48,5.64],[0.6,0.34,0.67,1.83,0.32,0,0],[2.09,1.26,5.91,5.45,0.78,0.32,1.6],[1.47,1.56,4.95,2.02,2.22,2.31,0.64],[0.92,0,0,0.3,0.72,0.15,0.35],[1.27,0,0.32,4.62,1.78,0,0.66],[3.84,2.99,2.43,5.91,1.14,4.53,0.86],[0.48,0.24,0.49,4.28,0,0,0.24],[0.24,1.27,0.52,1.46,2.25,1.47,1.07],[0.99,0.5,0.25,0.97,0,0,0],[14.66,14.06,10.08,11.34,6.59,10.96,6.75],[0,0,0,0,1.82,0,0],[5.77,5.19,4.27,0.22,0.95,0.8,4.52],[0,0,1.75,0,0,0,null],[9.12,4.26,2.08,9.06,3.4,0.97,0.65],[4.51,1.56,0.73,3.01,0.4,1.32,2.27],[5.25,1.64,2.71,3.64,0,2.08,1.29],[3.56,0,0.57,1.04,0,0.5,1.27],[6.9,2.33,3.77,7.25,2.17,2.68,2.16]], _BCN = [[85,27,14,44,7,65,31],[2,1,2,6,1,0,0],[14,8,36,39,5,2,9],[8,8,26,10,11,12,3],[6,0,0,2,5,1,2],[4,0,1,17,9,0,2],[14,10,9,24,5,19,3],[2,1,2,21,0,0,1],[1,5,2,6,11,6,3],[4,2,1,4,0,0,0],[85,72,52,66,42,74,34],[0,0,0,0,7,0,0],[32,27,22,1,4,4,23],[0,0,1,0,0,0,null],[30,14,6,30,10,3,2],[12,4,2,8,1,3,6],[17,5,9,13,0,7,4],[12,0,2,4,0,2,4],[14,5,8,15,5,6,5]];
+const KPI = {"orders":6956,"ordersPrev":8003,"e2e":15.4,"e2ePrev":15.7,"breach":42.4,"breachPrev":42.9,"p95":29,"p95Prev":30,"wait":2,"waitPrev":2.1,"mde":17,"cpk":11.2,"critical":["Golden SQ","New Giza","Sheikh Zayed","Nasr City","5th Settl","Marassi NC","6th Oct"],"benchmark":{"name":"Hadayek A2","e2e":9.9,"breach":8.3},"bestRecovery":{"name":"Haram","delta":-7.333333333333336},"mdeByStore":{"0":0,"1":4,"2":0,"3":0,"4":2,"5":2,"6":0,"7":0,"8":0,"9":1,"10":2,"11":0,"12":0,"14":1,"15":0,"16":1,"17":1,"18":3},"cpkByStore":{"0":5.5,"1":39.2,"2":8.9,"3":6.4,"4":8.7,"5":19.9,"6":11.5,"7":19,"8":3.6,"9":4.9,"10":13.9,"11":6.8,"12":7.9,"14":12.9,"15":11.4,"16":9.7,"17":6.4,"18":17.3}}; // { orders, ordersPrev, e2e, e2ePrev, breach, breachPrev, p95, p95Prev, wait, waitPrev, mde, cpk, critical:[names], benchmark:{name,e2e,breach}, bestRecovery:{name,delta} }
 // ============================================================
 
 document.getElementById('genStamp').textContent = 'Generated ' + new Date(GENERATED_AT_ISO).toLocaleString('en-GB',{timeZone:'Africa/Cairo',dateStyle:'medium',timeStyle:'short'}) + ' Cairo · Arrow keys · click dots';
